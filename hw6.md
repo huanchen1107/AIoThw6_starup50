@@ -1,5 +1,7 @@
 # Homework 6: CRISP-DM Startup Profit Prediction & Feature Selection
 
+![Homework 6 Infographic Dashboard](./homework_infographic.jpg)
+
 **Date:** June 11, 2026  
 **Subject:** Kaggle 50 Startups CRISP-DM sklearn Project (Version v2)  
 **Author:** AI Pair Programmer (Antigravity)
