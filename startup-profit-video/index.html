@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #09182c;
+        font-family: sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        perspective: 2400px;
+        background:
+          radial-gradient(circle at 50% 42%, rgba(58, 199, 94, 0.20), rgba(9, 24, 44, 0) 44%),
+          #09182c;
+      }
+      .ambient-grid {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.15;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.12) 1px, rgba(255,255,255,0) 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.12) 1px, rgba(255,255,255,0) 1px);
+        background-size: 64px 64px;
+      }
+      .slide-scene {
+        position: absolute;
+        inset: 0;
+        transform-style: preserve-3d;
+        transform-origin: left center;
+        will-change: transform, filter, opacity;
+      }
+      .slide-shell {
+        position: absolute;
+        left: 70px;
+        top: 48px;
+        width: 1780px;
+        height: 1001px;
+        overflow: hidden;
+        border: 3px solid rgba(255,255,255,0.94);
+        border-radius: 18px;
+        background: #f4f5ee;
+        box-shadow: 0 34px 90px rgba(0,0,0,0.48), 0 0 0 10px rgba(51,196,87,0.14);
+      }
+      .slide-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        will-change: transform;
+      }
+      .page-shade {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        opacity: 0;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(7,19,34,0.78), rgba(7,19,34,0.04) 48%, rgba(255,255,255,0.32));
+      }
+      .page-edge {
+        position: absolute;
+        top: 0;
+        right: -8px;
+        width: 22px;
+        height: 100%;
+        z-index: 5;
+        opacity: 0;
+        background: #35c95d;
+        box-shadow: 0 0 42px #35c95d;
+      }
+      .scene-tag {
+        position: absolute;
+        top: 22px;
+        right: 82px;
+        z-index: 7;
+        padding: 10px 20px;
+        border: 2px solid rgba(255,255,255,0.86);
+        border-radius: 999px;
+        color: #ffffff;
+        background: rgba(9,24,44,0.92);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+      .caption {
+        position: absolute;
+        left: 120px;
+        bottom: 62px;
+        z-index: 12;
+        width: 1680px;
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 17px 34px 19px;
+        border: 2px solid rgba(255,255,255,0.75);
+        border-radius: 18px;
+        color: #ffffff;
+        background: rgba(9,24,44,0.94);
+        box-shadow: 0 16px 40px rgba(0,0,0,0.40), inset 6px 0 0 #35c95d;
+        font-size: 34px;
+        font-weight: 700;
+        line-height: 1.38;
+        letter-spacing: 0.015em;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+      }
+      .progress {
+        position: absolute;
+        left: 70px;
+        top: 23px;
+        z-index: 20;
+        width: 520px;
+        height: 7px;
+        overflow: hidden;
+        border-radius: 99px;
+        background: rgba(255,255,255,0.22);
+      }
+      .progress-fill {
+        width: 100%;
+        height: 100%;
+        transform: scaleX(0);
+        transform-origin: left center;
+        background: #35c95d;
+        box-shadow: 0 0 18px rgba(53,201,93,0.95);
+      }
+      .final-vignette {
+        position: absolute;
+        inset: 0;
+        z-index: 30;
+        pointer-events: none;
+        opacity: 0;
+        background: #09182c;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="116" data-width="1920" data-height="1080">
+      <div class="ambient-grid" data-layout-ignore></div>
+      <div class="progress" data-layout-ignore><div class="progress-fill"></div></div>
+
+      <section id="scene-1" class="slide-scene clip" data-start="0" data-duration="18.05" data-track-index="1" style="z-index: 16">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-01.png" alt="Startup profit prediction result" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">01 / 06 · OUTCOME</div>
+        <div id="c1-1" class="caption">如果新創公司投入十二萬美元研發，以及二十五萬美元行銷，模型預測的淨利潤約為十五萬零四十三美元。</div>
+        <div id="c1-2" class="caption">這個成果來自一套完整、可解釋，而且重視泛化能力的資料科學流程。</div>
+      </section>
+      <section id="scene-2" class="slide-scene clip" data-start="17.35" data-duration="20.60" data-track-index="2" style="z-index: 15">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-02.png" alt="CRISP-DM framework" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">02 / 06 · PROCESS</div>
+        <div id="c2-1" class="caption">專案嚴格遵循 CRISP-DM。</div>
+        <div id="c2-2" class="caption">從商業理解、資料探索、資料準備，到模型建立、五折交叉驗證與部署。</div>
+        <div id="c2-3" class="caption">當評估發現過擬合，流程會回到資料準備，重新檢視特徵，而不是盲目增加模型複雜度。</div>
+      </section>
+      <section id="scene-3" class="slide-scene clip" data-start="37.25" data-duration="19.15" data-track-index="3" style="z-index: 14">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-03.png" alt="Model comparison matrix" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">03 / 06 · SELECTION</div>
+        <div id="c3-1" class="caption">模型比較顯示，特徵並不是越多越好。</div>
+        <div id="c3-2" class="caption">只使用研發與行銷支出的模型二，在測試集與交叉驗證中表現最佳，同時維持較低的誤差。</div>
+        <div id="c3-3" class="caption">加入管理費用或州別，反而讓模型表現下降。</div>
+      </section>
+      <section id="scene-4" class="slide-scene clip" data-start="55.70" data-duration="20.10" data-track-index="4" style="z-index: 13">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-04.png" alt="Overfitting sweet spot charts" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">04 / 06 · SWEET SPOT</div>
+        <div id="c4-1" class="caption">圖表清楚指出最佳甜蜜點在兩個特徵。</div>
+        <div id="c4-2" class="caption">當第三個特徵加入後，誤差開始上升，解釋力則逐步下降。</div>
+        <div id="c4-3" class="caption">對只有五十筆資料的專案而言，保留研發與行銷，是兼顧準確度與泛化能力的穩健選擇。</div>
+      </section>
+      <section id="scene-5" class="slide-scene clip" data-start="75.10" data-duration="18.95" data-track-index="5" style="z-index: 12">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-05.png" alt="Feature selection consensus" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">05 / 06 · CONSENSUS</div>
+        <div id="c5-1" class="caption">更重要的是，五種特徵選擇方法得到一致結論。</div>
+        <div id="c5-2" class="caption">無論是逐步選擇、遞迴消除、統計篩選、Lasso，或隨機森林，研發支出與行銷支出都穩定排名前兩名，讓決策更具可信度。</div>
+      </section>
+      <section id="scene-6" class="slide-scene clip" data-start="93.35" data-duration="22.65" data-track-index="6" style="z-index: 11">
+        <div class="slide-shell"><img class="slide-image" src="slides/slide-06.png" alt="Deliverables and deployment" /><div class="page-shade"></div><div class="page-edge"></div></div>
+        <div class="scene-tag">06 / 06 · DEPLOYED</div>
+        <div id="c6-1" class="caption">最終交付包含完整程式、序列化模型與效能圖表。</div>
+        <div id="c6-2" class="caption">部署後的簡潔公式，以研發與行銷支出預測利潤，容易解釋，也方便實際應用。</div>
+        <div id="c6-3" class="caption">這項成果證明，最佳模型不一定最複雜，而是最能穩定泛化的模型。</div>
+      </section>
+
+      <audio id="audio-1" data-start="0.65" data-duration="16.9" data-track-index="30" src="assets/narration/slide-01.mp3"></audio>
+      <audio id="audio-2" data-start="18.00" data-duration="19.45" data-track-index="30" src="assets/narration/slide-02.mp3"></audio>
+      <audio id="audio-3" data-start="37.90" data-duration="18.0" data-track-index="30" src="assets/narration/slide-03.mp3"></audio>
+      <audio id="audio-4" data-start="56.35" data-duration="18.95" data-track-index="30" src="assets/narration/slide-04.mp3"></audio>
+      <audio id="audio-5" data-start="75.75" data-duration="17.8" data-track-index="30" src="assets/narration/slide-05.mp3"></audio>
+      <audio id="audio-6" data-start="94.00" data-duration="19.85" data-track-index="30" src="assets/narration/slide-06.mp3"></audio>
+      <div class="final-vignette" data-layout-ignore></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const scenes = [
+        { id: "#scene-1", start: 0, turn: 17.35 },
+        { id: "#scene-2", start: 17.35, turn: 37.25 },
+        { id: "#scene-3", start: 37.25, turn: 55.70 },
+        { id: "#scene-4", start: 55.70, turn: 75.10 },
+        { id: "#scene-5", start: 75.10, turn: 93.35 },
+        { id: "#scene-6", start: 93.35, turn: null }
+      ];
+
+      scenes.forEach((scene, index) => {
+        const image = `${scene.id} .slide-image`;
+        const tag = `${scene.id} .scene-tag`;
+        tl.fromTo(scene.id, { opacity: 0, x: 70, rotationY: 7, scale: 0.985 }, { opacity: 1, x: 0, rotationY: 0, scale: 1, duration: 0.62, ease: "expo.out" }, scene.start + 0.10);
+        tl.fromTo(tag, { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.42, ease: "back.out(1.35)" }, scene.start + 0.28);
+        tl.fromTo(image, { scale: 1.018 }, { scale: 1.0, duration: 1.8, ease: "sine.out" }, scene.start + 0.10);
+        if (scene.turn !== null) {
+          tl.to(`${scene.id} .page-shade`, { opacity: 0.82, duration: 0.34, ease: "power2.in" }, scene.turn);
+          tl.to(`${scene.id} .page-edge`, { opacity: 1, duration: 0.25, ease: "power3.in" }, scene.turn + 0.08);
+          tl.to(scene.id, { x: -170, rotationY: -86, scale: 0.97, filter: "brightness(0.62)", duration: 0.70, ease: "power3.in" }, scene.turn);
+        }
+      });
+
+      const captionGroups = [
+        ["#c1-1", 0.75, 10.469], ["#c1-2", 10.469, 17.275],
+        ["#c2-1", 18.10, 21.18], ["#c2-2", 21.18, 28.763], ["#c2-3", 28.763, 37.18],
+        ["#c3-1", 38.00, 41.983], ["#c3-2", 41.983, 51.108], ["#c3-3", 51.108, 55.608],
+        ["#c4-1", 56.45, 60.697], ["#c4-2", 60.697, 66.752], ["#c4-3", 66.752, 75.002],
+        ["#c5-1", 75.85, 80.638], ["#c5-2", 80.638, 93.277],
+        ["#c6-1", 94.10, 99.397], ["#c6-2", 99.397, 106.930], ["#c6-3", 106.930, 113.555]
+      ];
+      captionGroups.forEach(([selector, start, end]) => {
+        tl.fromTo(selector, { opacity: 0, visibility: "hidden", y: 24, scale: 0.985 }, { opacity: 1, visibility: "visible", y: 0, scale: 1, duration: 0.30, ease: "power3.out" }, start);
+        tl.to(selector, { opacity: 0, scale: 0.985, duration: 0.16, ease: "power2.in" }, end - 0.16);
+        tl.set(selector, { opacity: 0, visibility: "hidden" }, end);
+      });
+
+      tl.to(".progress-fill", { scaleX: 1, duration: 114, ease: "none" }, 0.4);
+      tl.fromTo(".ambient-grid", { x: 0, y: 0 }, { x: -64, y: -32, duration: 116, ease: "none" }, 0);
+      tl.to("#scene-6 .slide-shell", { boxShadow: "0 34px 110px rgba(53,201,93,0.50), 0 0 0 12px rgba(53,201,93,0.32)", duration: 1.0, ease: "power2.out" }, 113.6);
+      tl.to(".final-vignette", { opacity: 1, duration: 1.2, ease: "sine.in" }, 114.8);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
