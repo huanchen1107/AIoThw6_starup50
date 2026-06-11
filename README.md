@@ -1,5 +1,7 @@
 # Kaggle 50 Startups CRISP-DM Machine Learning Project (v2)
 
+![Homework 6 Infographic Dashboard](./homework_infographic.jpg)
+
 This repository implements a modular Scikit-learn regression solution to predict startup profitability based on expenditure profiles, adhering strictly to the **CRISP-DM (Cross-Industry Standard Process for Data Mining)** methodology.
 
 ---
